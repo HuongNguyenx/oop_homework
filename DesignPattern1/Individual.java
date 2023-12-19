@@ -34,7 +34,7 @@ public class Individual extends Person {
         res += "Name: " + this.getName() + "\n";
         res += ("D.O.B: " + this.getDateOfBirth() + "\n");
         res += ("Gender: " + this.getGender() + "\n");
-        res += "Marial Status: ";
+        res += "Marital Status: ";
         if (married) {
             res += ("Married" + "\n");
             res += ("Spouse: " + this.partner.getName() + "\n");
