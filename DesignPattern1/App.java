@@ -34,7 +34,7 @@ public class App {
     public static void parentWithTwoChildren(Person person) {
         List<Person> children = person.getChildren();
         if (children.size() == 2) {
-            System.out.println(person.getName() + " and " + person.partner.getName());
+            System.out.println(person.getName() + " and " + person.getPartner().getName());
         }
         for (Person child : children) {
             parentWithTwoChildren(child);
@@ -48,6 +48,17 @@ public class App {
         } else {
             for (Person child : children) {
                 newGeneration(child);
+            }
+        }
+    }
+
+    public static void parentWithNoChildren(Person person) {
+        List<Person> children = person.getChildren();
+        if (person.getMarried() && children.isEmpty()) {
+            System.out.println(person.getName() + " and " + person.getPartner().getName());
+        } else if (!children.isEmpty()) {
+            for (Person child : children) {
+                parentWithNoChildren(child);
             }
         }
     }
