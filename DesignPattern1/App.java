@@ -42,13 +42,29 @@ public class App {
     }
 
     public static void newGeneration(Person person) {
-        List<Person> children = person.getChildren();
-        if (children.isEmpty()) {
-            System.out.println(person.getName());
-        } else {
-            for (Person child : children) {
-                newGeneration(child);
+        if (person == null) {
+            return;
+        }
+        List<Person> generation = new ArrayList<>();
+        Queue<Person> queue = new LinkedList<>();
+        queue.offer(person);
+
+        while (!queue.isEmpty()) {
+            int n = queue.size();
+            generation.clear();
+
+            for (int i = 0; i < n; i++) {
+                Person currentPerson = queue.poll();
+                generation.add(currentPerson);
+
+                for (Person child : currentPerson.getChildren()) {
+                    queue.offer(child);
+                }
             }
+        }
+
+        for (Person child : generation) {
+            System.out.println(child.getName());
         }
     }
 
